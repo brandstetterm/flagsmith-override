@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flagsmith Override (Preview)</title>
+    <link rel="stylesheet" href="../panel/panel.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="origin-row">
+        <div class="origin-info">
+          <span class="eyebrow">Flagsmith Override</span>
+          <span id="origin" class="origin">–</span>
+        </div>
+        <div class="origin-actions">
+          <label class="switch" title="Apply overrides on this origin">
+            <input id="enabled" type="checkbox" />
+            <span class="track"></span>
+            <span class="switch-label">Active</span>
+          </label>
+          <button id="settings-toggle" class="icon-button" type="button" title="Settings" aria-expanded="false">⚙</button>
+        </div>
+      </div>
+      <p id="status" class="status"></p>
+      <div id="banner" class="banner" hidden></div>
+      <div class="toolbar">
+        <input id="search" class="input" type="search" placeholder="Search flags and JSON keys…" autocomplete="off" />
+        <label class="chip">
+          <input id="only-overridden" type="checkbox" />
+          <span>Changed only</span>
+        </label>
+      </div>
+    </header>
+
+    <section id="settings" class="settings" hidden>
+      <h2>Flagsmith API URLs</h2>
+      <p>
+        One base URL per line, e.g. <code>https://flagsmith.example.com/api/v1/</code>. Leave empty to
+        auto-detect any <code>…/api/v1/identities/</code> or <code>…/api/v1/flags/</code> response.
+      </p>
+      <textarea id="api-urls" class="textarea" rows="3" spellcheck="false" placeholder="Auto-detect"></textarea>
+      <div id="detected" class="detected" hidden></div>
+      <p id="settings-error" class="error" hidden></p>
+      <div class="settings-actions">
+        <button id="settings-cancel" class="button ghost" type="button">Cancel</button>
+        <button id="settings-save" class="button" type="button">Save</button>
+      </div>
+    </section>
+
+    <main>
+      <p id="empty" class="empty" hidden></p>
+      <ul id="flags" class="flags"></ul>
+    </main>
+
+    <footer class="footer">
+      <form id="add-form" class="add-form">
+        <input id="add-name" class="input" placeholder="New flag, e.g. my_feature" autocomplete="off" />
+        <button class="button" type="submit">Add</button>
+      </form>
+      <div class="footer-actions">
+        <button id="reload" class="button" type="button">Reload tab</button>
+        <button id="export" class="button ghost" type="button">Export</button>
+        <button id="import" class="button ghost" type="button">Import</button>
+        <input id="import-file" type="file" accept="application/json" hidden />
+        <button id="reset-all" class="button ghost danger" type="button">Reset all</button>
+      </div>
+    </footer>
+
+    <script src="chrome-stub.js"></script>
+    <script type="module" src="../panel/panel.js"></script>
+  </body>
+</html>
